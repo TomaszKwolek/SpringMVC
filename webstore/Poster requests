@@ -1,0 +1,16 @@
+http://localhost:8080/webstore/rest//findAll
+
+http://localhost:8080/webstore/rest//findById?id=1
+
+http://localhost:8080/webstore/rest/findByTitleAndAuthor/?title=F&author=J
+
+http://localhost:8080/webstore/rest/add
+
+{
+	"id": 4,
+    "title": "uuuuuuuu",
+    "authors": "aaaaaaaa",
+    "status": "FREE"
+  }
+  
+  

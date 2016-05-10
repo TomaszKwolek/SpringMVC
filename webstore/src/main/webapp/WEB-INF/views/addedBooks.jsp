@@ -17,7 +17,7 @@
 				<h1>Books</h1>
 				<p>This page contains all informations about books</p>
 				<a href="<c:url value="/j_spring_security_logout" />"
-					class="btn btn-danger btn-mini pull-right">logout</a>
+					class="btn btn-warning btn-mini pull-right">logout</a>
 			</div>
 		</div>
 	</section>
@@ -37,9 +37,9 @@
 								<a href=" <spring:url value="/books/book?id=${book.id}" /> "
 									class="btn btn-primary"> <span
 									class="glyphicon-info-sign glyphicon" /></span> Details
-								</a> <a href="<spring:url value="/books/remove?id=${book.id}"/>"
+							 <!--	</a> <a href="<spring:url value="/books/remove?id=${book.id}"/>"
 									class="btn btn-default"> <span
-									class="glyphicon glyphicon-remove"></span> Remove
+									class="glyphicon glyphicon-remove"></span> Remove -->
 								</a>
 							</p>
 						</div>

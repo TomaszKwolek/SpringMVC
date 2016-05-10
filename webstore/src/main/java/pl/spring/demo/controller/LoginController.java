@@ -8,10 +8,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import pl.spring.demo.constants.ModelConstants;
 import pl.spring.demo.constants.ViewNames;
 
 @Controller
 public class LoginController {
+	
+	private static final String INFO_TEXT = "Here You shall display information containing informations about newly created TO";
+	private static final String WELCOME = "This is a welcome page";
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
@@ -27,7 +31,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(Model model) {
-		return ViewNames.LOGIN;
+		model.addAttribute(ModelConstants.GREETING, WELCOME);
+		model.addAttribute(ModelConstants.INFO, INFO_TEXT);
+		return ViewNames.WELCOME;
 	}
 
 	@RequestMapping(value = "/403", method = RequestMethod.GET)

@@ -18,7 +18,7 @@
 				<p>Add new book</p>
 			</div>
 			<a href="<c:url value="/j_spring_security_logout" />"
-				class="btn btn-danger btn-mini pull-right">logout 
+				class="btn btn-warning btn-mini pull-right">logout 
 			</a> 
 		</div>
 	</section>
@@ -64,7 +64,7 @@
 		</form:form>
 	</section>
 	<section class="container">
-		<a href="<spring:url value="/" />" class="btn btn-default"> <span
+		<a href="<spring:url value="/"  />" class="btn btn-default"> <span
 			class="glyphicon-hand-left glyphicon"></span> back
 		</a>
 		<a href="<spring:url value="/" />" class="btn btn-default"> <span

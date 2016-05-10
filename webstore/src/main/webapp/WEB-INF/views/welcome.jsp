@@ -18,7 +18,7 @@
 		</div>
 	</section>
 	<section class="container">
-		<div class="row">
+		<div class="col">
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="thumbnail">
 					<div class="caption">
@@ -26,16 +26,16 @@
 						<p>Display all books</p>
 						<p>
 							<a href="/webstore/books/all" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Show all books
+								class="glyphicon glyphicon-book" /></span> Show all books
 							</a>
 						</p>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-	<section class="container">
-		<div class="row">
+	
+
+		<div class="col">
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="thumbnail">
 					<div class="caption">
@@ -43,16 +43,16 @@
 						<p>Create new book</p>
 						<p>
 							<a href="/webstore/books/add" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Add book
+								class="glyphicon glyphicon-plus-sign" /></span> Add book
 							</a>
 						</p>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
-		<section class="container">
-		<div class="row">
+	
+
+		<div class="col">
 			<div class="col-sm-6 col-md-3" style="padding-bottom: 15px">
 				<div class="thumbnail">
 					<div class="caption">
@@ -60,13 +60,13 @@
 						<p>Find books</p>
 						<p>
 							<a href="/webstore/books/findBook" class="btn btn-default"> <span
-								class="glyphicon-info-sign glyphicon" /></span> Find books
+								class="glyphicon glyphicon-search" /></span> Find books
 							</a>
 						</p>
 					</div>
 				</div>
 			</div>
 		</div>
-	</section>
+</section>
 </body>
 </html>

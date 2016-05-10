@@ -17,7 +17,7 @@
 				<h1>Book</h1>
 				<p>Find book</p>
 				<a href="<c:url value="/j_spring_security_logout" />"
-				class="btn btn-danger btn-mini pull-right">logout</a>
+				class="btn btn-warning btn-mini pull-right">logout</a>
 			</div>
 		</div>
 	</section>

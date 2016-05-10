@@ -31,13 +31,6 @@ public class BookController {
 	
 	@Autowired
 	private BookService bookService;
-
-	@RequestMapping
-	public String list(Model model) {
-		// TODO: implement default method
-		return ViewNames.BOOKS;
-	}
-
 	
 	/**
 	 * Method collects info about all books
@@ -45,7 +38,6 @@ public class BookController {
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	public ModelAndView allBooks() {
 		ModelAndView modelAndView = new ModelAndView();
-		// TODO: implement method gathering and displaying all books
 		modelAndView.setViewName(ViewNames.BOOKS);
 		modelAndView.addObject("bookList",bookService.findAllBooks());			
 		return modelAndView;
@@ -54,21 +46,11 @@ public class BookController {
 	@RequestMapping(value = "/book", method = RequestMethod.GET)
 	public ModelAndView bookInfo(@RequestParam("id") Long id) {
 		ModelAndView modelAndView = new ModelAndView();
-		// TODO: here implement methods which displays book info based on query
-		// arguments 
-
 		modelAndView.setViewName(ViewNames.BOOK);
 		modelAndView.addObject("book", bookService.findBooksById(id).get(0));		
 		return modelAndView;
 	}
 	
-	@RequestMapping(value = "/foundBook", method = RequestMethod.GET)
-	public ModelAndView foundBookInfo(@RequestParam("id") Long id) {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName(ViewNames.FOUND_BOOK);
-		modelAndView.addObject("book", bookService.findBooksById(id).get(0));		
-		return modelAndView;
-	}
 	
 	@RequestMapping(value = "/findBook", method = RequestMethod.GET)
 	public String findBook(Model model) {
@@ -85,6 +67,14 @@ public class BookController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value = "/foundBook", method = RequestMethod.GET)
+	public ModelAndView foundBookInfo(@RequestParam("id") Long id) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName(ViewNames.FOUND_BOOK);
+		modelAndView.addObject("book", bookService.findBooksById(id).get(0));		
+		return modelAndView;
+	}
+	
 	@RequestMapping(value = "/findByTitleAndAuthor", method = RequestMethod.GET)
 	public ModelAndView findByTitleOrAuthor(@ModelAttribute("searchedBook") BookTo searchedBook) {
 		ModelAndView modelAndView = new ModelAndView();
@@ -97,14 +87,12 @@ public class BookController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addBook(Model model) {
-		// TODO: Implement GET / POST methods for "add book" functionality
 		model.addAttribute("newBook", new BookTo());
 		return ViewNames.ADD_BOOK;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public ModelAndView addBook(@ModelAttribute("newBook") BookTo newBook) {
-		// TODO: Implement GET / POST methods for "add book" functionality
 		ModelAndView modelAndView = new ModelAndView();
 		bookService.saveBook(newBook);
 		modelAndView.setViewName(ViewNames.ADDED_BOOKS);

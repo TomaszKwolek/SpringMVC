@@ -66,9 +66,6 @@ public class BookControllerTest {
 		// given
 		BookTo testBook = new BookTo(1L, "Test title", "Test Author", BookStatus.FREE);
 		Mockito.when(bookService.saveBook(Mockito.any())).thenReturn(testBook);
-
-		// TODO: please take a look how we pass @ModelAttribute as a request
-		// attribute
 		ResultActions resultActions = mockMvc.perform(post("/books/add").flashAttr("newBook", testBook));
 		// then
 		resultActions.andExpect(view().name(ViewNames.ADDED_BOOKS))
@@ -89,8 +86,8 @@ public class BookControllerTest {
 		testBookList.add(new BookTo(1L, "Test title 1", "Test Author 1", BookStatus.FREE));
 		testBookList.add(new BookTo(2L, "Test title 2", "Test Author 2", BookStatus.FREE));
 		testBookList.add(new BookTo(3L, "Test title 3", "Test Author 3", BookStatus.FREE));
+		
 		Mockito.when(bookService.findAllBooks()).thenReturn(testBookList);
-
 		ResultActions resultActions = mockMvc.perform(get("/books/all"));
 		// then
 		resultActions.andExpect(view().name(ViewNames.BOOKS))
@@ -117,7 +114,8 @@ public class BookControllerTest {
 					@Override
 					public boolean matches(Object argument) {
 						BookTo book = (BookTo) argument;
-						return null != book && testBook.getTitle().equals(book.getTitle());
+						return null != book && testBook.getTitle().equals(book.getTitle())
+											&& testBook.getAuthors().equals(book.getAuthors());
 					}
 				}));
 
@@ -136,7 +134,8 @@ public class BookControllerTest {
 					@Override
 					public boolean matches(Object argument) {
 						BookTo book = (BookTo) argument;
-						return null != book && testBook.getTitle().equals(book.getTitle());
+						return null != book && testBook.getTitle().equals(book.getTitle())
+											&& testBook.getAuthors().equals(book.getAuthors());
 					}
 				}));
 
@@ -154,8 +153,8 @@ public class BookControllerTest {
 	@Test
 	public void testFindById() throws Exception {
 		// given
-		BookTo foundBook = new BookTo(1L, "Test title", "Test Author", BookStatus.FREE);
 		BookTo searchedBook = new BookTo(1L, "xxx", "yyy", BookStatus.FREE);
+		BookTo foundBook = new BookTo(1L, "Test title", "Test Author", BookStatus.FREE);
 		Mockito.when(bookService.findBooksById(Mockito.any())).thenReturn(Arrays.asList(foundBook));
 
 		ResultActions resultActions = mockMvc.perform(get("/books/findById").flashAttr("searchedBook", searchedBook));
@@ -166,8 +165,9 @@ public class BookControllerTest {
 					@SuppressWarnings("unchecked")
 					public boolean matches(Object argument) {
 						List<BookTo> bookList = (List<BookTo>) argument;
-						return null != bookList
-								&& Arrays.asList(searchedBook).get(0).getId().equals(bookList.get(0).getId());
+						return null != bookList	&& Arrays.asList(searchedBook).get(0).getId().equals(bookList.get(0).getId())
+												&& foundBook.getTitle().equals(bookList.get(0).getTitle())
+												&& foundBook.getAuthors().equals(bookList.get(0).getAuthors());
 					}
 				}));
 
@@ -191,7 +191,7 @@ public class BookControllerTest {
 					public boolean matches(Object argument) {
 						List<BookTo> bookList = (List<BookTo>) argument;
 						return null != bookList && bookList.get(0).getTitle().contains(searchedBook.getTitle())
-								&& bookList.get(0).getAuthors().contains(searchedBook.getAuthors());
+												&& bookList.get(0).getAuthors().contains(searchedBook.getAuthors());
 					}
 				}));
 
@@ -205,8 +205,7 @@ public class BookControllerTest {
 		ResultActions resultActions = mockMvc.perform(get("/books/remove").param("id", testBook.getId().toString()));
 		// then
 		resultActions.andExpect(view().name(ViewNames.REMOVED));
-		
-
+	
 	}
 
 	/**

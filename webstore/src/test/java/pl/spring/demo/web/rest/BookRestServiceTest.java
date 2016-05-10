@@ -71,7 +71,6 @@ public class BookRestServiceTest {
 	
 	@Test
 	public void testShouldGetAllBooksNoContent() throws Exception {
-
 		// given:
 		List<BookTo> bookToList = new ArrayList<>();
 
@@ -84,7 +83,6 @@ public class BookRestServiceTest {
 		response.andExpect(status().isNoContent());
 	
 	}
-
 
 	@Test
 	public void testShouldSaveBook() throws Exception {
@@ -100,11 +98,10 @@ public class BookRestServiceTest {
 
 	@Test
 	public void testFindById() throws Exception {
-
 		// given:
 		final BookTo bookTo1 = new BookTo(1L, "title", "Author1", BookStatus.FREE);
 
-		// register response for bookService.findAllBooks() mock
+		// register response for bookService.FindById() mock
 		Mockito.when(bookService.findBooksById(Mockito.any())).thenReturn(Arrays.asList(bookTo1));
 
 		// when
@@ -120,16 +117,15 @@ public class BookRestServiceTest {
 
 	@Test
 	public void testFindByIdNoContent() throws Exception {
-
 		// given:
 		List<BookTo> bookToList = new ArrayList<>();
-		final BookTo bookTo1 = new BookTo(1L, "title", "Author1", BookStatus.FREE);
+		Long id =1L;
 		// register response for bookService.findAllBooks() mock
 		Mockito.when(bookService.findBooksById(Mockito.any())).thenReturn(bookToList);
 
 		// when
 		ResultActions response = this.mockMvc.perform(get("/rest/findById").accept(MediaType.APPLICATION_JSON)
-				.contentType(MediaType.APPLICATION_JSON).param("id", bookTo1.getId().toString()));
+				.contentType(MediaType.APPLICATION_JSON).param("id", id.toString()));
 
 		response.andExpect(status().isNoContent());
 	}
@@ -160,7 +156,6 @@ public class BookRestServiceTest {
 
 		// given:
 		List<BookTo> bookToList = new ArrayList<>();
-		final BookTo bookTo1 = new BookTo(1L, "title", "Author1", BookStatus.FREE);
 
 		// register response for bookService.findAllBooks() mock
 		Mockito.when(bookService.findBookByTitleAndAuthor(Mockito.any(), Mockito.any()))
